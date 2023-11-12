@@ -44,4 +44,8 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "userEntity")
     private List<ReviewEntity> reviewEntities = new ArrayList<>();
 
+    @Builder.Default
+    @OneToMany(mappedBy = "userEntity")
+    private List<UserFoodCategoryEntity> userFoodCategories = new ArrayList<>();
+
 }

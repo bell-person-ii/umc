@@ -5,8 +5,10 @@ import org.springframework.stereotype.Repository;
 import project.umc.app.domain.UserEntity;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 @Repository
+@Transactional
 @RequiredArgsConstructor
 public class UserRepository {
 
