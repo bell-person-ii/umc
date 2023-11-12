@@ -1,7 +1,9 @@
 package project.umc.app.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +13,10 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Builder
 public class UserEntity extends BaseEntity {
 
     @Id
@@ -30,9 +36,11 @@ public class UserEntity extends BaseEntity {
 
     private String category;
 
+    @Builder.Default
     @OneToMany(mappedBy = "userEntity")
     private List<UserMissionEntity> userMissionEntities = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "userEntity")
     private List<ReviewEntity> reviewEntities = new ArrayList<>();
 
