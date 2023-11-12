@@ -31,7 +31,6 @@ public class UserResponseDto {
                 .gender(userEntity.getGender())
                 .birthday(userEntity.getBirthday())
                 .address(userEntity.getAddress())
-                .category(userEntity.getCategory())
                 .build();
 
         return userResponseDto;

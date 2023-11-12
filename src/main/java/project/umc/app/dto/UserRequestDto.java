@@ -1,14 +1,22 @@
 package project.umc.app.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import project.umc.app.domain.Address;
 import project.umc.app.domain.Gender;
 import project.umc.app.domain.UserEntity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRequestDto {
 
     private String name;
@@ -17,7 +25,7 @@ public class UserRequestDto {
     private String birthMonth;
     private String birthDay;
     private Address address;
-    private String category;
+    private List<Long> userPreferFoodCategory =new ArrayList<>();
 
 
     public static LocalDate stringDateToLocalDate(UserRequestDto userRequestDto){
@@ -35,7 +43,6 @@ public class UserRequestDto {
                 .gender(userRequestDto.getGender())
                 .birthday(UserRequestDto.stringDateToLocalDate(userRequestDto))
                 .address(userRequestDto.getAddress())
-                .category(userRequestDto.getCategory())
                 .build();
 
         return userEntity;

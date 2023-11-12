@@ -34,7 +34,6 @@ public class UserEntity extends BaseEntity {
     @Embedded
     private Address address;
 
-    private String category;
 
     @Builder.Default
     @OneToMany(mappedBy = "userEntity")
