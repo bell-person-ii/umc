@@ -17,7 +17,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDto {
+public class UserJoinrRequestDto {
 
     private String name;
     private Gender gender;
@@ -25,26 +25,28 @@ public class UserRequestDto {
     private String birthMonth;
     private String birthDay;
     private Address address;
+    private String email;
     private List<Long> userPreferFoodCategory =new ArrayList<>();
 
-
-    public static LocalDate stringDateToLocalDate(UserRequestDto userRequestDto){
-        String year = userRequestDto.getBirthYear();
-        String month = userRequestDto.getBirthMonth();
-        String day = userRequestDto.getBirthDay();
+// String 타입 날짜데이터 -> LocalDate 타입 날짜데이터
+    public static LocalDate stringDateToLocalDate(UserJoinrRequestDto userJoinrRequestDto){
+        String year = userJoinrRequestDto.getBirthYear();
+        String month = userJoinrRequestDto.getBirthMonth();
+        String day = userJoinrRequestDto.getBirthDay();
         String strDate = year+'-'+month+'-'+day;
         LocalDate resultDate = LocalDate.parse(strDate, DateTimeFormatter.ISO_DATE);
         return resultDate;
     }
 
-    public static UserEntity toEntity(UserRequestDto userRequestDto){
+    // Dto -> Entity 변환
+    public static UserEntity toEntity(UserJoinrRequestDto userJoinrRequestDto){
         UserEntity userEntity = UserEntity.builder()
-                .name(userRequestDto.getName())
-                .gender(userRequestDto.getGender())
-                .birthday(UserRequestDto.stringDateToLocalDate(userRequestDto))
-                .address(userRequestDto.getAddress())
+                .name(userJoinrRequestDto.getName())
+                .gender(userJoinrRequestDto.getGender())
+                .birthday(UserJoinrRequestDto.stringDateToLocalDate(userJoinrRequestDto))
+                .address(userJoinrRequestDto.getAddress())
+                .email(userJoinrRequestDto.getEmail())
                 .build();
-
         return userEntity;
     }
 }

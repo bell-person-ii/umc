@@ -9,31 +9,36 @@ import project.umc.app.domain.Gender;
 import project.umc.app.domain.UserEntity;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserResponseDto {
+public class UserJoinResponseDto {
 
+    private Long id;
     private String name;
     private Gender gender;
     private LocalDate birthday;
     private Address address;
+    private String email;
     private String category;
+    private String message;
 
 
 
-    public static UserResponseDto createUserResponseDto(UserEntity userEntity){
-        UserResponseDto userResponseDto = UserResponseDto.builder()
+    public static UserJoinResponseDto createUserJoinResponseDto(UserEntity userEntity){
+
+        UserJoinResponseDto userJoinResponseDto = UserJoinResponseDto.builder()
+                .id(userEntity.getId())
                 .name(userEntity.getName())
                 .gender(userEntity.getGender())
                 .birthday(userEntity.getBirthday())
                 .address(userEntity.getAddress())
+                .email(userEntity.getEmail())
                 .build();
 
-        return userResponseDto;
+        return userJoinResponseDto;
 
     }
 }

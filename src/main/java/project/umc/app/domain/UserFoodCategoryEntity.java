@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class UserFoodCategoryEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_food_category_id")
     private Long id;
 

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class UserMissionEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_mission_id")
     private Long id;
 

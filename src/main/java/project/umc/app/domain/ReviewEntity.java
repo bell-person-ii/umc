@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class ReviewEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Long id;
 

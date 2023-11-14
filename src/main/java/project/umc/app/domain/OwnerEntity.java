@@ -13,7 +13,7 @@ import java.util.List;
 public class OwnerEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "owner_id")
     private Long id;
     private String name;

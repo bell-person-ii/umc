@@ -19,7 +19,7 @@ import java.util.List;
 public class FoodCategoryEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_category_id")
     private Long id;
 

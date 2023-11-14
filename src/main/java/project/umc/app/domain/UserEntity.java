@@ -20,7 +20,7 @@ import java.util.List;
 public class UserEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
@@ -33,6 +33,8 @@ public class UserEntity extends BaseEntity {
 
     @Embedded
     private Address address;
+
+    private String email;
 
 
     @Builder.Default

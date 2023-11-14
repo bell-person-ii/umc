@@ -14,7 +14,7 @@ public class FoodCategoryRepository {
 
     private final EntityManager em;
 
-    public FoodCategoryEntity findOne(Long id){
+    public FoodCategoryEntity findFoodCategory(Long id){
         FoodCategoryEntity result = em.find(FoodCategoryEntity.class,id);
         return result;
     }
