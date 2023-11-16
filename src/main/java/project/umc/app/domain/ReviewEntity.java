@@ -3,7 +3,7 @@ package project.umc.app.domain;
 import javax.persistence.*;
 
 @Entity
-public class ReviewEntity {
+public class ReviewEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

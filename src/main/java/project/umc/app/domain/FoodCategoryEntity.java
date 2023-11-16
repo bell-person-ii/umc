@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Builder
-public class FoodCategoryEntity {
+public class FoodCategoryEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
