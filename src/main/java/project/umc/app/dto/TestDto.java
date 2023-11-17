@@ -5,12 +5,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TempResponse {
-
+@Builder
+@Getter
+public class TestDto {
     private String testString;
-
 }
