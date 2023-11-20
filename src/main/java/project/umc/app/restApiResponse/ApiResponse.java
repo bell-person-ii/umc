@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import project.umc.app.restApiResponse.detailStatusInfo.BaseCode;
 import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 
 @AllArgsConstructor
@@ -25,5 +26,10 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> onSuccess(T result){
         return new ApiResponse<>(true, SuccessStatus._OK.getCode(),
                 SuccessStatus._OK.getMessage(), null);
+    }
+
+    public static <T> ApiResponse<T> of(BaseCode baseCode, T result){
+        return new ApiResponse<>(true,baseCode.getReasonHttpStatus().getCode(),
+                baseCode.getReasonHttpStatus().getMessage(),result);
     }
 }
