@@ -25,7 +25,7 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> onSuccess(T result){
         return new ApiResponse<>(true, SuccessStatus._OK.getCode(),
-                SuccessStatus._OK.getMessage(), null);
+                SuccessStatus._OK.getMessage(), result);
     }
 
     public static <T> ApiResponse<T> of(BaseCode baseCode, T result){
