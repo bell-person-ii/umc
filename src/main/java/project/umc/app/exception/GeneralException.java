@@ -2,10 +2,12 @@ package project.umc.app.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import project.umc.app.restApiResponse.detailStatusInfo.BaseErrorCode;
 import project.umc.app.restApiResponse.detailStatusInfo.ErrorReasonDTO;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class GeneralException extends RuntimeException{
 
