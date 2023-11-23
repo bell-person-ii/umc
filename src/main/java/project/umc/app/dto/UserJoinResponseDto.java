@@ -23,7 +23,6 @@ public class UserJoinResponseDto {
     private Address address;
     private String email;
     private String category;
-    private String message;
 
 
 
