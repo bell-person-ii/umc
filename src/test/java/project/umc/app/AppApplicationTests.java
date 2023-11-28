@@ -29,7 +29,7 @@ class AppApplicationTests {
 				.build();
 		//when
 		userRepository.save(userEntity);
-		UserEntity result = userRepository.findOne(1L);
+		UserEntity result = userRepository.findOneById(1L);
 
 
 		//then

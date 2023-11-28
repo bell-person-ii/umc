@@ -15,6 +15,10 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
+    public void saveStore(StoreEntity storeEntity){
+        storeRepository.save(storeEntity);
+    }
+
     public Optional<StoreEntity> isExistStore(Long id){
         Optional<StoreEntity> userEntity = Optional.of(storeRepository.findOneStore(id));
         return userEntity;

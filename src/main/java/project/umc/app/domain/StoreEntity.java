@@ -1,7 +1,9 @@
 package project.umc.app.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "store")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StoreEntity extends BaseEntity{
 
     @Id
