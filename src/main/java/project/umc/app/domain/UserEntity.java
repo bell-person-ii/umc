@@ -49,4 +49,9 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "userEntity")
     private List<UserFoodCategoryEntity> userFoodCategories = new ArrayList<>();
 
+    public void addUserFoodCategories(List<UserFoodCategoryEntity> userFoodCategoryEntities){
+        this.userFoodCategories.addAll(userFoodCategoryEntities);
+    }
+
+
 }

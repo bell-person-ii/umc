@@ -28,4 +28,7 @@ public class UserFoodCategoryEntity extends BaseEntity{
     @JoinColumn(name = "food_category_id")
     private FoodCategoryEntity foodCategoryEntity;
 
+    public void addUserEntity(UserEntity userEntity){
+        this.userEntity = userEntity;
+    }
 }

@@ -7,6 +7,9 @@ import lombok.ToString;
 import project.umc.app.domain.Address;
 import project.umc.app.domain.Gender;
 import project.umc.app.domain.UserEntity;
+import project.umc.app.domain.UserFoodCategoryEntity;
+import project.umc.app.vaildation.annotation.AlreadyExistEmail;
+import project.umc.app.vaildation.annotation.ExistCategories;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +28,10 @@ public class UserJoinrRequestDto {
     private String birthMonth;
     private String birthDay;
     private Address address;
+    @AlreadyExistEmail
     private String email;
+
+    @ExistCategories
     private List<Long> userPreferFoodCategory =new ArrayList<>();
 
 // String 타입 날짜데이터 -> LocalDate 타입 날짜데이터
@@ -40,6 +46,9 @@ public class UserJoinrRequestDto {
 
     // Dto -> Entity 변환
     public static UserEntity toEntity(UserJoinrRequestDto userJoinrRequestDto){
+
+        List<UserFoodCategoryEntity> userFoodCategoryEntities = new ArrayList<>();
+
         UserEntity userEntity = UserEntity.builder()
                 .name(userJoinrRequestDto.getName())
                 .gender(userJoinrRequestDto.getGender())

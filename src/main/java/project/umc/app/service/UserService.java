@@ -10,7 +10,9 @@ import project.umc.app.repository.FoodCategoryRepository;
 import project.umc.app.repository.UserFoodCategoryRepository;
 import project.umc.app.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,6 +30,8 @@ public class UserService {
     public void saveUserPreferFoodCategory(UserEntity userEntity,List<Long>preferfoodCategoryIdList ){
         for(Long foodCategoryId : preferfoodCategoryIdList){
             FoodCategoryEntity foodCategoryEntity = foodCategoryRepository.findFoodCategory(foodCategoryId);
+            System.out.println("**********************");
+            System.out.println(foodCategoryId);
             userFoodCategoryRepository.UserPreferSave(userEntity,foodCategoryEntity);
         }
     }
@@ -48,5 +52,28 @@ public class UserService {
         return savedUserEntity.get(0);
     }
 
+    public List<UserFoodCategoryEntity> findUserFoodPrefer(UserEntity userEntity){
+        return userFoodCategoryRepository.findUserPreferFoodCategories(userEntity);
+    }
 
+    public Optional<UserEntity> isExistUser(Long id){
+        Optional<UserEntity> userEntity = Optional.of(userRepository.findOneById(id));
+        return userEntity;
+    }
+
+    public Optional<UserEntity> isAlreadyExistUserByEmail(String email){
+
+        List<UserEntity>userEntities = userRepository.findOneByEmail(email);
+        Optional<UserEntity> userEntity;
+
+        if(userEntities.size() == 0){
+            return userEntity=Optional.empty();
+        }
+
+        else{
+             userEntity = Optional.of(userRepository.findOneByEmail(email).get(0));
+            return userEntity;
+        }
+
+    }
 }

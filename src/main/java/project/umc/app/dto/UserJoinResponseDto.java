@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import project.umc.app.domain.Address;
-import project.umc.app.domain.Gender;
-import project.umc.app.domain.UserEntity;
+import project.umc.app.domain.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -22,7 +22,16 @@ public class UserJoinResponseDto {
     private LocalDate birthday;
     private Address address;
     private String email;
-    private String category;
+    private List<String> category;
+
+    public static List<String> foodCategoryEntitiesToStringList(List<UserFoodCategoryEntity> userFoodCategoryEntity){
+        List<String> foodCategoryStringList= new ArrayList<>();
+        for(int i =0; i< userFoodCategoryEntity.size();i++){
+            FoodCategoryEntity foodCategoryEntity = userFoodCategoryEntity.get(i).getFoodCategoryEntity();
+            foodCategoryStringList.add(foodCategoryEntity.getName());
+        }
+        return foodCategoryStringList;
+    }
 
 
 
@@ -35,6 +44,7 @@ public class UserJoinResponseDto {
                 .birthday(userEntity.getBirthday())
                 .address(userEntity.getAddress())
                 .email(userEntity.getEmail())
+                .category(UserJoinResponseDto.foodCategoryEntitiesToStringList(userEntity.getUserFoodCategories()))
                 .build();
 
         return userJoinResponseDto;

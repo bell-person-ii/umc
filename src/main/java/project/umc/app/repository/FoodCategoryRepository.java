@@ -18,4 +18,12 @@ public class FoodCategoryRepository {
         FoodCategoryEntity result = em.find(FoodCategoryEntity.class,id);
         return result;
     }
+
+    public boolean existsById(Long value) {
+        FoodCategoryEntity foodCategoryEntity = em.find(FoodCategoryEntity.class,value);
+        if(foodCategoryEntity == null){
+            return false;
+        }
+        return true;
+    }
 }

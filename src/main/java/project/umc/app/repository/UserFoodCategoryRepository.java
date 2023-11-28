@@ -9,6 +9,7 @@ import project.umc.app.domain.UserFoodCategoryEntity;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,5 +24,14 @@ public class UserFoodCategoryRepository {
                 .foodCategoryEntity(foodCategoryEntity)
                 .build();
         em.persist(userFoodCategoryEntity);
+    }
+
+    public List<UserFoodCategoryEntity> findUserPreferFoodCategories(UserEntity userEntity){
+        Long id = userEntity.getId();
+        List<UserFoodCategoryEntity> result
+                = em.createQuery("select uf from UserFoodCategoryEntity uf where uf.id = :id", UserFoodCategoryEntity.class)
+                .setParameter("id",id).getResultList();
+
+        return result;
     }
 }
