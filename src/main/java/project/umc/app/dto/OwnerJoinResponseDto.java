@@ -24,7 +24,6 @@ public class OwnerJoinResponseDto {
     private LocalDate birthday;
     private Address address;
     private String email;
-    private List<String> storeList;
 
 
     public static OwnerJoinResponseDto createOwnerJoinResponseDto(OwnerEntity ownerEntity){

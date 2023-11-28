@@ -12,13 +12,15 @@ import project.umc.app.dto.OwnerJoinResponseDto;
 import project.umc.app.restApiResponse.ApiResponse;
 import project.umc.app.service.OwnerService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class OwnerController {
     private final OwnerService ownerService;
 
     @PostMapping("owners/sign-up")
-    public ResponseEntity<OwnerJoinResponseDto> OwnerSignUP(@RequestBody OwnerJoinRequestDto ownerJoinRequestDto){
+    public ResponseEntity<OwnerJoinResponseDto> OwnerSignUp(@RequestBody @Valid OwnerJoinRequestDto ownerJoinRequestDto){
         OwnerEntity ownerEntity = OwnerJoinRequestDto.toEntity(ownerJoinRequestDto);
         ownerService.saveOwner(ownerEntity);
 

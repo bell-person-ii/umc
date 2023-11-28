@@ -38,4 +38,8 @@ public class StoreEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "storeEntity")
     private List<ReviewEntity> reviewEntities = new ArrayList<>();
+
+    public void editOwner(OwnerEntity ownerEntity){
+        this.ownerEntity = ownerEntity;
+    }
 }

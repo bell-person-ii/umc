@@ -27,6 +27,12 @@ public class OwnerRepository {
         List<OwnerEntity> result = em.createQuery
                 ("select o from OwnerEntity o where o.email =: email", OwnerEntity.class)
                 .setParameter("email",email).getResultList();
-        return result.get(0);
+
+        if(result.size() ==0){
+            return null;
+        }
+        else {
+            return result.get(0);
+        }
     }
 }

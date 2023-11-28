@@ -7,21 +7,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import project.umc.app.domain.FoodCategoryEntity;
 import project.umc.app.domain.UserEntity;
-import project.umc.app.domain.UserFoodCategoryEntity;
-import project.umc.app.dto.UserJoinrRequestDto;
+import project.umc.app.dto.UserJoinRequestDto;
 import project.umc.app.dto.UserJoinResponseDto;
 import project.umc.app.repository.FoodCategoryRepository;
 import project.umc.app.repository.UserFoodCategoryRepository;
 import project.umc.app.repository.UserRepository;
 import project.umc.app.restApiResponse.ApiResponse;
-import project.umc.app.restApiResponse.detailStatusInfo.ErrorStatus;
 import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.UserService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
@@ -35,7 +31,7 @@ public class UserController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("users/sign-up")
-    public ResponseEntity<ApiResponse<UserJoinResponseDto>> UserSignUp(@RequestBody @Valid UserJoinrRequestDto userJoinrRequestDto){
+    public ResponseEntity<ApiResponse<UserJoinResponseDto>> UserSignUp(@RequestBody @Valid UserJoinRequestDto userJoinRequestDto){
 
         // 이미 존재하는 이메일이면 유저 추가 가입 거부
         /*
@@ -44,11 +40,11 @@ public class UserController {
             return new ResponseEntity<>(ApiResponse.onFailure(errorStatus.getCode(),errorStatus.getMessage(),null),HttpStatus.BAD_REQUEST);
         }
          */
-        UserEntity userEntity = UserJoinrRequestDto.toEntity(userJoinrRequestDto);
+        UserEntity userEntity = UserJoinRequestDto.toEntity(userJoinRequestDto);
 
         userService.saveUser(userEntity);
 
-        userService.saveUserPreferFoodCategory(userEntity,userJoinrRequestDto.getUserPreferFoodCategory());
+        userService.saveUserPreferFoodCategory(userEntity, userJoinRequestDto.getUserPreferFoodCategory());
 
         UserEntity savedUserEntity = userService.findUserByEmail(userEntity.getEmail());
         savedUserEntity.addUserFoodCategories(userService.findUserFoodPrefer(savedUserEntity));

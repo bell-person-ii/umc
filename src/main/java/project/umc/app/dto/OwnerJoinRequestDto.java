@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import project.umc.app.domain.Address;
 import project.umc.app.domain.Gender;
 import project.umc.app.domain.OwnerEntity;
+import project.umc.app.vaildation.annotation.AlreadyExistOwnerEmail;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,6 +25,7 @@ public class OwnerJoinRequestDto {
     private String birthMonth;
     private String birthDay;
     private Address address;
+    @AlreadyExistOwnerEmail
     private String email;
 
 

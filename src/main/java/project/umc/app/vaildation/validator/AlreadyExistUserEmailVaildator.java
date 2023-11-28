@@ -5,9 +5,7 @@ import org.springframework.stereotype.Component;
 import project.umc.app.domain.UserEntity;
 import project.umc.app.restApiResponse.detailStatusInfo.ErrorStatus;
 import project.umc.app.service.UserService;
-import project.umc.app.vaildation.annotation.AlreadyExistEmail;
-import project.umc.app.vaildation.annotation.ExistCategories;
-import project.umc.app.vaildation.annotation.ExistMember;
+import project.umc.app.vaildation.annotation.AlreadyExistUserEmail;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,11 +13,11 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class AlreadyExistEmailVaildator implements ConstraintValidator<AlreadyExistEmail, String> {
+public class AlreadyExistUserEmailVaildator implements ConstraintValidator<AlreadyExistUserEmail, String> {
 
     private final UserService userService;
     @Override
-    public void initialize(AlreadyExistEmail constraintAnnotation){
+    public void initialize(AlreadyExistUserEmail constraintAnnotation){
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
