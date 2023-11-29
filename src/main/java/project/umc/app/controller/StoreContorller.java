@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import project.umc.app.domain.FoodCategoryEntity;
 import project.umc.app.domain.OwnerEntity;
 import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddStoreRequestDto;
@@ -27,7 +28,13 @@ public class StoreContorller {
         OwnerEntity findOwnerEntity= ownerService.findOwnerById(addStoreRequestDto.getOwnerId());
         // Dto -> Entity 전환부
         StoreEntity storeEntity = AddStoreRequestDto.toEntity(addStoreRequestDto);
+        // 오너 데이터 추가 부분
         storeEntity.editOwner(findOwnerEntity);
+        // 카테고리 데이터 추가부분
+        FoodCategoryEntity foodCategoryEntity = storeService.findFoodCategoryById(addStoreRequestDto.getStoreCategoryId());
+        String foodCategoryName = foodCategoryEntity.getName();
+        storeEntity.editCategory(foodCategoryName);
+
         storeService.save(storeEntity);
 
         // 오너 아이디로 스토어 테이블에 저장된 해당 스토어 데이터 들고오기 구현 요구

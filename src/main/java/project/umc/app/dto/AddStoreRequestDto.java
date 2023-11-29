@@ -19,14 +19,14 @@ public class AddStoreRequestDto {
     private String name;
     private Address address;
     private Long ownerId;
-
-    private List<Long> storeCategory = new ArrayList<>();
+    private Long storeCategoryId;
 
     public static StoreEntity toEntity(AddStoreRequestDto addStoreRequestDto){
         StoreEntity storeEntity = StoreEntity.builder()
                 .name(addStoreRequestDto.getName())
                 .address(addStoreRequestDto.getAddress())
                 .ownerEntity(null)
+                .category(null)
                 .build();
         return storeEntity;
     }

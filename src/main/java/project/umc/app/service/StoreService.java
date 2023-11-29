@@ -3,9 +3,11 @@ package project.umc.app.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.umc.app.domain.FoodCategoryEntity;
 import project.umc.app.domain.OwnerEntity;
 import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddStoreRequestDto;
+import project.umc.app.repository.FoodCategoryRepository;
 import project.umc.app.repository.OwnerRepository;
 import project.umc.app.repository.StoreRepository;
 
@@ -19,6 +21,7 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
     private final OwnerRepository ownerRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
 
     public void save(StoreEntity storeEntity){
         storeRepository.save(storeEntity);
@@ -43,6 +46,10 @@ public class StoreService {
 
     public List<StoreEntity> findStoreEntityByOwnerEmail(String email){
         return storeRepository.findOneByOwnerEmail(email);
+    }
+
+    public FoodCategoryEntity findFoodCategoryById(Long id){
+        return foodCategoryRepository.findFoodCategory(id);
     }
 
     public Optional<StoreEntity> isExistStore(Long id){

@@ -18,6 +18,7 @@ public class AddStoreResponseDto {
     private Long storeId;
     private String storeName;
     private Address storeAddress;
+    private String storeCategory;
     private Long ownerId;
     private String ownerName;
     private String ownerEmail;
@@ -27,6 +28,7 @@ public class AddStoreResponseDto {
                 .storeId(storeEntity.getId())
                 .storeName(storeEntity.getName())
                 .storeAddress(storeEntity.getAddress())
+                .storeCategory(storeEntity.getCategory())
                 .ownerId(ownerEntity.getId())
                 .ownerName(ownerEntity.getName())
                 .ownerEmail(ownerEntity.getEmail())

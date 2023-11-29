@@ -42,4 +42,6 @@ public class StoreEntity extends BaseEntity{
     public void editOwner(OwnerEntity ownerEntity){
         this.ownerEntity = ownerEntity;
     }
+
+    public void editCategory(String category){this.category = category;}
 }
