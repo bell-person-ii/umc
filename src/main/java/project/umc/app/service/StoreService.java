@@ -27,6 +27,10 @@ public class StoreService {
         storeRepository.save(storeEntity);
     }
 
+    public StoreEntity findOneById(Long id){
+        return storeRepository.findOneStore(id);
+    }
+
     // Dto에서 Owner 필드에 직접 Owner엔티티를 주입하는걸 피하고자 스토어 엔티티에 오너 엔티티를 추가하는 함수를 추가
     public StoreEntity addOwnerEntityToStoreEntity(AddStoreRequestDto addStoreRequestDto,StoreEntity storeEntity){
         OwnerEntity ownerEntity = ownerRepository.findOneById(addStoreRequestDto.getOwnerId());

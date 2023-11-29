@@ -1,6 +1,9 @@
 package project.umc.app.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
 
 import javax.persistence.*;
@@ -11,6 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "mission")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MissionEntity extends BaseEntity {
 
     @Id
@@ -30,4 +36,8 @@ public class MissionEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "missionEntity")
     private List<UserMissionEntity> userMissionEntities =new ArrayList<>();
+
+    public void editStoreEntity(StoreEntity storeEntity){
+        this.storeEntity = storeEntity;
+    }
 }
