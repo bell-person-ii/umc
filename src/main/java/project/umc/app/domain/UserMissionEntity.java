@@ -1,10 +1,18 @@
 package project.umc.app.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.apachecommons.CommonsLog;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 @Table(name = "user_mission")
 public class UserMissionEntity extends BaseEntity {
 
@@ -27,4 +35,16 @@ public class UserMissionEntity extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id")
     private ReviewEntity reviewEntity;
+
+    public void editUserEntity(UserEntity userEntity){
+        this.userEntity = userEntity;
+    }
+
+    public void editMissionEntity(MissionEntity missionEntity){
+        this.missionEntity = missionEntity;
+    }
+
+    public void editMissionCompletion(MissionCompletion missionCompletion){
+        this.missionCompletion = missionCompletion;
+    }
 }

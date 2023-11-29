@@ -19,6 +19,10 @@ public class MissionRepository {
         em.persist(missionEntity);
     }
 
+    public MissionEntity findOneById(Long id){
+        return em.find(MissionEntity.class,id);
+    }
+
     public List<MissionEntity> findAllByStoreId(Long storeId){
         List<MissionEntity> missionEntities =
         em.createQuery("select m from MissionEntity m where m.storeEntity.id =: storeId")
