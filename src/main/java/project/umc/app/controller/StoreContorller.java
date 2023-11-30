@@ -12,6 +12,8 @@ import project.umc.app.domain.OwnerEntity;
 import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddStoreRequestDto;
 import project.umc.app.dto.AddStoreResponseDto;
+import project.umc.app.restApiResponse.ApiResponse;
+import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.OwnerService;
 import project.umc.app.service.StoreService;
 
@@ -23,7 +25,7 @@ public class StoreContorller {
     private final OwnerService ownerService;
 
     @PostMapping("stores/registration")
-    public ResponseEntity<AddStoreResponseDto> AddStore(@RequestBody AddStoreRequestDto addStoreRequestDto){
+    public ResponseEntity<ApiResponse<AddStoreResponseDto>> AddStore(@RequestBody AddStoreRequestDto addStoreRequestDto){
 
         OwnerEntity findOwnerEntity= ownerService.findOwnerById(addStoreRequestDto.getOwnerId());
         // Dto -> Entity 전환부
@@ -44,7 +46,7 @@ public class StoreContorller {
         AddStoreResponseDto addStoreResponseDto = AddStoreResponseDto
                 .createAddStoreResponseDto(savedStoreEntity,ownerEntity);
 
-        return new ResponseEntity<>(addStoreResponseDto, HttpStatus.OK);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,addStoreResponseDto),HttpStatus.ACCEPTED);
 
 
     }

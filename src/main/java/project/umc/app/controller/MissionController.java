@@ -11,6 +11,8 @@ import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddMissionRequestDto;
 import project.umc.app.dto.AddMissionResponseDto;
 import project.umc.app.dto.AddStoreResponseDto;
+import project.umc.app.restApiResponse.ApiResponse;
+import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.MissionService;
 import project.umc.app.service.StoreService;
 
@@ -22,7 +24,7 @@ public class MissionController {
     private final MissionService missionService;
 
     @PostMapping("missions/registration")
-    public ResponseEntity<AddMissionResponseDto> addmission(@RequestBody AddMissionRequestDto addMissionRequestDto){
+    public ResponseEntity<ApiResponse<AddMissionResponseDto>> addmission(@RequestBody AddMissionRequestDto addMissionRequestDto){
         MissionEntity missionEntity = AddMissionRequestDto.toEntity(addMissionRequestDto);
 
         //미션 엔티티에 스토어 엔티티 추가하기
@@ -35,6 +37,6 @@ public class MissionController {
         //addMissionResponseDto에 데이터 넣기
         AddMissionResponseDto addMissionResponseDto = AddMissionResponseDto.createAddMissionResponseDto(missionEntity,storeEntity);
 
-        return new ResponseEntity<>(addMissionResponseDto, HttpStatus.OK);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,addMissionResponseDto),HttpStatus.ACCEPTED);
     }
 }

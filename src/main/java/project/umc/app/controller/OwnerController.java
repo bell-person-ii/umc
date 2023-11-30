@@ -10,6 +10,7 @@ import project.umc.app.domain.OwnerEntity;
 import project.umc.app.dto.OwnerJoinRequestDto;
 import project.umc.app.dto.OwnerJoinResponseDto;
 import project.umc.app.restApiResponse.ApiResponse;
+import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.OwnerService;
 
 import javax.validation.Valid;
@@ -20,13 +21,13 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @PostMapping("owners/sign-up")
-    public ResponseEntity<OwnerJoinResponseDto> OwnerSignUp(@RequestBody @Valid OwnerJoinRequestDto ownerJoinRequestDto){
+    public ResponseEntity<ApiResponse<OwnerJoinResponseDto>> OwnerSignUp(@RequestBody @Valid OwnerJoinRequestDto ownerJoinRequestDto){
         OwnerEntity ownerEntity = OwnerJoinRequestDto.toEntity(ownerJoinRequestDto);
         ownerService.saveOwner(ownerEntity);
 
         OwnerEntity savedOwnerEntity = ownerService.findOwnerByEmail(ownerEntity.getEmail());
         OwnerJoinResponseDto ownerJoinResponseDto = OwnerJoinResponseDto.createOwnerJoinResponseDto(savedOwnerEntity);
-        return new ResponseEntity<>(ownerJoinResponseDto, HttpStatus.OK);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,ownerJoinResponseDto),HttpStatus.ACCEPTED);
     }
 
 }

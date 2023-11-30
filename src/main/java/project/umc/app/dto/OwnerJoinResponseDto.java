@@ -29,6 +29,7 @@ public class OwnerJoinResponseDto {
     public static OwnerJoinResponseDto createOwnerJoinResponseDto(OwnerEntity ownerEntity){
 
         OwnerJoinResponseDto ownerJoinResponseDto = OwnerJoinResponseDto.builder()
+                .id(ownerEntity.getId())
                 .name(ownerEntity.getName())
                 .gender(ownerEntity.getGender())
                 .birthday(ownerEntity.getBirthday())
