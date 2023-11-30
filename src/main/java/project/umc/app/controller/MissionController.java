@@ -16,6 +16,8 @@ import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.MissionService;
 import project.umc.app.service.StoreService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class MissionController {
@@ -24,7 +26,7 @@ public class MissionController {
     private final MissionService missionService;
 
     @PostMapping("missions/registration")
-    public ResponseEntity<ApiResponse<AddMissionResponseDto>> addmission(@RequestBody AddMissionRequestDto addMissionRequestDto){
+    public ResponseEntity<ApiResponse<AddMissionResponseDto>> addmission(@RequestBody @Valid AddMissionRequestDto addMissionRequestDto){
         MissionEntity missionEntity = AddMissionRequestDto.toEntity(addMissionRequestDto);
 
         //미션 엔티티에 스토어 엔티티 추가하기

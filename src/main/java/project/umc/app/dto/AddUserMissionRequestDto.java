@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import project.umc.app.domain.MissionCompletion;
 import project.umc.app.domain.UserMissionEntity;
+import project.umc.app.vaildation.annotation.ExistMission;
+import project.umc.app.vaildation.annotation.ExistUser;
+
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +17,11 @@ import project.umc.app.domain.UserMissionEntity;
 @Getter
 public class AddUserMissionRequestDto {
 
+    @NotNull
+    @ExistUser
     private Long userId;
+    @NotNull
+    @ExistMission
     private Long missionId;
 
     public static UserMissionEntity toEntity(AddUserMissionRequestDto addUserMissionRequestDto){

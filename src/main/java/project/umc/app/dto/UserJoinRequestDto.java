@@ -11,6 +11,8 @@ import project.umc.app.domain.UserFoodCategoryEntity;
 import project.umc.app.vaildation.annotation.AlreadyExistUserEmail;
 import project.umc.app.vaildation.annotation.ExistCategories;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,13 +24,20 @@ import java.util.List;
 @AllArgsConstructor
 public class UserJoinRequestDto {
 
+    @NotNull
     private String name;
     private Gender gender;
+    @NotNull
     private String birthYear;
+    @NotNull
     private String birthMonth;
+    @NotNull
     private String birthDay;
+    @Valid
+    @NotNull
     private Address address;
     @AlreadyExistUserEmail
+    @NotNull
     private String email;
 
     @ExistCategories

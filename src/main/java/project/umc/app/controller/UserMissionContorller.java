@@ -14,13 +14,15 @@ import project.umc.app.restApiResponse.ApiResponse;
 import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.UserMissionService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class UserMissionContorller {
     private final UserMissionService userMissionService;
 
     @PostMapping("missions/challenge")
-    public ResponseEntity<ApiResponse<AddUserMissionResponseDto>> registerUserMission(@RequestBody AddUserMissionRequestDto addUserMissionRequestDto){
+    public ResponseEntity<ApiResponse<AddUserMissionResponseDto>> registerUserMission(@RequestBody @Valid AddUserMissionRequestDto addUserMissionRequestDto){
         UserMissionEntity userMissionEntity = AddUserMissionRequestDto.toEntity(addUserMissionRequestDto);
         userMissionService.insertUserAndMissionEntityById(userMissionEntity,
                 addUserMissionRequestDto.getUserId(), addUserMissionRequestDto.getMissionId());

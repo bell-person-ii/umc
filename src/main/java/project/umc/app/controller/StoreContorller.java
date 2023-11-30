@@ -17,6 +17,8 @@ import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.OwnerService;
 import project.umc.app.service.StoreService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class StoreContorller {
@@ -25,7 +27,7 @@ public class StoreContorller {
     private final OwnerService ownerService;
 
     @PostMapping("stores/registration")
-    public ResponseEntity<ApiResponse<AddStoreResponseDto>> AddStore(@RequestBody AddStoreRequestDto addStoreRequestDto){
+    public ResponseEntity<ApiResponse<AddStoreResponseDto>> AddStore(@RequestBody @Valid AddStoreRequestDto addStoreRequestDto){
 
         OwnerEntity findOwnerEntity= ownerService.findOwnerById(addStoreRequestDto.getOwnerId());
         // Dto -> Entity 전환부

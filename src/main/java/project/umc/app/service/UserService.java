@@ -57,8 +57,17 @@ public class UserService {
     }
 
     public Optional<UserEntity> isExistUser(Long id){
-        Optional<UserEntity> userEntity = Optional.of(userRepository.findOneById(id));
-        return userEntity;
+
+        UserEntity findUserEntity = userRepository.findOneById(id);
+
+        Optional<UserEntity> optionalUserEntity;
+
+        if(findUserEntity == null){
+            return optionalUserEntity = Optional.empty();
+        }
+        else{
+            return optionalUserEntity = Optional.of(findUserEntity);
+        }
     }
 
     public Optional<UserEntity> isAlreadyExistUserByEmail(String email){

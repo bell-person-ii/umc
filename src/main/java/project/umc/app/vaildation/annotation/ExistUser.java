@@ -1,16 +1,16 @@
 package project.umc.app.vaildation.annotation;
 
-import project.umc.app.vaildation.validator.MemberExistsValidator;
+import project.umc.app.vaildation.validator.UserExistsValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = MemberExistsValidator.class)
+@Constraint(validatedBy = UserExistsValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistMember {
+public @interface ExistUser {
     String message() default "해당 사용자가 존재하지 않습니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

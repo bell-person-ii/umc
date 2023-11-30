@@ -43,4 +43,18 @@ public class OwnerService {
         }
 
     }
+
+    public Optional<OwnerEntity> isExistOwner(Long id){
+
+        OwnerEntity findOwnerEntity = ownerRepository.findOneById(id);
+
+        Optional<OwnerEntity> optionalOwnerEntity;
+
+        if(findOwnerEntity == null){
+            return optionalOwnerEntity = Optional.empty();
+        }
+        else{
+            return optionalOwnerEntity = Optional.of(findOwnerEntity);
+        }
+    }
 }

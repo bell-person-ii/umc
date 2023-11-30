@@ -17,15 +17,20 @@ public enum ErrorStatus implements BaseErrorCode {
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
 
     // Member Error
-    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
-    NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
-    EXIST_EMAIL_ADDRESS(HttpStatus.BAD_REQUEST,"MEMBER4003","이미 가입된 이메일 입니다."),
+    USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "사용자가 없습니다."),
+    NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "USER4002", "닉네임은 필수 입니다."),
+    EXIST_EMAIL_ADDRESS(HttpStatus.BAD_REQUEST,"USER4003","이미 가입된 이메일 입니다."),
     // Article Error
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
+    OWNER_NOT_FOUND(HttpStatus.NOT_FOUND,"OWNER4001","등록된 오너 정보가 없습니다."),
+
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD_CATEGORY4001", "음식 카테고리가 없습니다."),
+    STORE_FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD_CATEGORY4002", "존재하지 않는 음식점 카테고리 입니다."),
 
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE_4001","가게가 없습니다."),
+
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND,"MISSION_4001","등록된 미션이 없습니다."),
 
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
 

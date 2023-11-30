@@ -57,7 +57,16 @@ public class StoreService {
     }
 
     public Optional<StoreEntity> isExistStore(Long id){
-        Optional<StoreEntity> userEntity = Optional.of(storeRepository.findOneStore(id));
-        return userEntity;
+
+        StoreEntity findStoreEntity = storeRepository.findOneStore(id);
+        Optional<StoreEntity> optionalStoreEntity;
+
+        if(findStoreEntity == null){
+            return optionalStoreEntity = Optional.empty();
+        }
+
+        else{
+            return optionalStoreEntity = Optional.of(findStoreEntity);
+        }
     }
 }

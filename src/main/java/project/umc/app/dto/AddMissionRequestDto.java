@@ -2,7 +2,9 @@ package project.umc.app.dto;
 
 import lombok.*;
 import project.umc.app.domain.MissionEntity;
+import project.umc.app.vaildation.annotation.ExistStore;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,11 +15,18 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class AddMissionRequestDto {
 
+    @NotNull
+    @ExistStore
     private Long storeId;
+    @NotNull
     private String content;
+    @NotNull
     private Float reward;
+    @NotNull
     private String year;
+    @NotNull
     private String month;
+    @NotNull
     private String day;
 
 

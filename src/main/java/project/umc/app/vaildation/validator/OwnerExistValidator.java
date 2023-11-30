@@ -1,13 +1,11 @@
 package project.umc.app.vaildation.validator;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.Store;
 import org.springframework.stereotype.Component;
-import project.umc.app.domain.StoreEntity;
-import project.umc.app.repository.StoreRepository;
+import project.umc.app.domain.OwnerEntity;
 import project.umc.app.restApiResponse.detailStatusInfo.ErrorStatus;
-import project.umc.app.service.StoreService;
-import project.umc.app.vaildation.annotation.ExistStore;
+import project.umc.app.service.OwnerService;
+import project.umc.app.vaildation.annotation.ExistOwner;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,26 +13,25 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class StoreExistValidator implements ConstraintValidator<ExistStore, Long> {
+public class OwnerExistValidator implements ConstraintValidator<ExistOwner, Long> {
 
-    private final StoreService storeService;
-
+    private final OwnerService ownerService;
     @Override
-    public void initialize(ExistStore constraintAnnotation) {
+    public void initialize(ExistOwner constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext context) {
-        Optional<StoreEntity> target = storeService.isExistStore(id);
+        Optional<OwnerEntity> target = ownerService.isExistOwner(id);
 
-        if (target.isEmpty()){
+        if (target.isEmpty()) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.OWNER_NOT_FOUND.toString()).addConstraintViolation();
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 }
+

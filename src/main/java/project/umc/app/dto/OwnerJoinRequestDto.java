@@ -10,6 +10,8 @@ import project.umc.app.domain.Gender;
 import project.umc.app.domain.OwnerEntity;
 import project.umc.app.vaildation.annotation.AlreadyExistOwnerEmail;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -19,11 +21,17 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class OwnerJoinRequestDto {
 
+    @NotNull
     private String name;
     private Gender gender;
+    @NotNull
     private String birthYear;
+    @NotNull
     private String birthMonth;
+    @NotNull
     private String birthDay;
+    @Valid
+    @NotNull
     private Address address;
     @AlreadyExistOwnerEmail
     private String email;
