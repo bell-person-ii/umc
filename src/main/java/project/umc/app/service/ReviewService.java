@@ -52,4 +52,9 @@ public class ReviewService {
         List<ReviewEntity> reviewEntityList = reviewRepository.findAllByStoreId(id);
         return reviewEntityList;
     }
+
+    public List<ReviewEntity>findSectionByStoreId(Long id, Integer pageNumber){
+        List<ReviewEntity> reviewEntityList = reviewRepository.findSectionByStoreId(id,pageNumber);
+        return reviewEntityList;
+    }
 }

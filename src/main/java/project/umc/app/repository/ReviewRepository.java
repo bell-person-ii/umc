@@ -29,4 +29,18 @@ public class ReviewRepository {
                         .setParameter("id",id).getResultList();
         return reviewEntities;
     }
+
+
+    public List<ReviewEntity> findSectionByStoreId(Long id,Integer pageNumber){
+
+        Integer pageSize = 10;
+
+        List<ReviewEntity> reviewEntities =
+                em.createQuery("select r from ReviewEntity r where r.storeEntity.id =: id")
+                        .setParameter("id",id)
+                        .setFirstResult((pageNumber-1)*pageSize)
+                        .setMaxResults((pageNumber * pageSize))
+                        .getResultList();
+        return reviewEntities;
+    }
 }

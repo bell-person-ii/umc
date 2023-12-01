@@ -21,11 +21,22 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @GetMapping("reviews")
-    public ResponseEntity<List<StoreReviewsResponseDto>>showStoreReview(@RequestParam("storeId")Long storeId){
+
+    @GetMapping("allReviews")
+    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showStoreReview(@RequestParam("storeId")Long storeId){
         List<ReviewEntity> reviewEntityList = reviewService.findAllByStoreId(storeId);
         List<StoreReviewsResponseDto> storeReviewsResponseDtoList= reviewService.ReviewEntitiesToResponseDto(reviewEntityList);
-        return new ResponseEntity<>(storeReviewsResponseDtoList,HttpStatus.OK);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,storeReviewsResponseDtoList),HttpStatus.OK);
+    }
+
+
+
+
+    @GetMapping("reviews")
+    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showSectionalStoreReview(@RequestParam("storeId")Long storeId,@RequestParam("page")Integer pageNumber){
+        List<ReviewEntity> reviewEntityList = reviewService.findSectionByStoreId(storeId,pageNumber);
+        List<StoreReviewsResponseDto> storeReviewsResponseDtoList= reviewService.ReviewEntitiesToResponseDto(reviewEntityList);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,storeReviewsResponseDtoList),HttpStatus.OK);
     }
 
 
