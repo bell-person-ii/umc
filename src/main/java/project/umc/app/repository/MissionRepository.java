@@ -29,4 +29,5 @@ public class MissionRepository {
                 .setParameter("storeId",storeId).getResultList();
         return missionEntities;
     }
+
 }

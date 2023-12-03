@@ -3,20 +3,20 @@ package project.umc.app.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.umc.app.domain.MissionEntity;
 import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddMissionRequestDto;
 import project.umc.app.dto.AddMissionResponseDto;
 import project.umc.app.dto.AddStoreResponseDto;
+import project.umc.app.dto.MissionResponseDto;
 import project.umc.app.restApiResponse.ApiResponse;
 import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.MissionService;
 import project.umc.app.service.StoreService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,5 +40,14 @@ public class MissionController {
         AddMissionResponseDto addMissionResponseDto = AddMissionResponseDto.createAddMissionResponseDto(missionEntity,storeEntity);
 
         return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,addMissionResponseDto),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("stores/missions")
+    public ResponseEntity<ApiResponse<List<MissionResponseDto>>> showAllStoreMissions(@RequestParam("storeId")Long storeId){
+
+        List<MissionEntity> missionEntityList = missionService.findAllByStoreId(storeId);
+        List<MissionResponseDto> missionResponseDtoList = missionService.missionEntityListToDtoList(missionEntityList);
+
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,missionResponseDtoList),HttpStatus.OK);
     }
 }

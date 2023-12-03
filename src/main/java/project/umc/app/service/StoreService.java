@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.umc.app.domain.FoodCategoryEntity;
+import project.umc.app.domain.MissionEntity;
 import project.umc.app.domain.OwnerEntity;
 import project.umc.app.domain.StoreEntity;
 import project.umc.app.dto.AddStoreRequestDto;
 import project.umc.app.repository.FoodCategoryRepository;
+import project.umc.app.repository.MissionRepository;
 import project.umc.app.repository.OwnerRepository;
 import project.umc.app.repository.StoreRepository;
 
@@ -69,4 +71,7 @@ public class StoreService {
             return optionalStoreEntity = Optional.of(findStoreEntity);
         }
     }
+
+
+
 }

@@ -3,18 +3,15 @@ package project.umc.app.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.umc.app.domain.UserMissionEntity;
-import project.umc.app.dto.AddStoreRequestDto;
-import project.umc.app.dto.AddUserMissionRequestDto;
-import project.umc.app.dto.AddUserMissionResponseDto;
+import project.umc.app.dto.*;
 import project.umc.app.restApiResponse.ApiResponse;
 import project.umc.app.restApiResponse.detailStatusInfo.SuccessStatus;
 import project.umc.app.service.UserMissionService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,5 +29,20 @@ public class UserMissionContorller {
 
         AddUserMissionResponseDto addUserMissionResponseDto = AddUserMissionResponseDto.createAddUserMissionResponseDto(userMissionEntity);
         return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,addUserMissionResponseDto),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("users/missions/in-progress")
+    public ResponseEntity<ApiResponse<List<UserMissionResponseDto>>> showNotCompletedUserMissions(@RequestParam("userId")Long userId){
+        List<UserMissionEntity> userMissionEntityList = userMissionService.findNotCompletedUserMissions(userId);
+        List<UserMissionResponseDto> userMissionResponseDtoList= userMissionService.EntityListToDtoList(userMissionEntityList);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,userMissionResponseDtoList),HttpStatus.OK);
+
+    }
+
+    @PutMapping("users/missions/completetion")
+    public ResponseEntity<ApiResponse<UserMissionResponseDto>> missionComplete(@RequestParam("userMissionId")Long userMissionId){
+        UserMissionEntity userMissionEntity = userMissionService.changeCompletion(userMissionId);
+        UserMissionResponseDto userMissionResponseDto = UserMissionResponseDto.createUserMissionResponseDto(userMissionEntity);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,userMissionResponseDto),HttpStatus.OK);
     }
 }
