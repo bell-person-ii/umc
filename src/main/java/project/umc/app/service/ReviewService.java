@@ -57,4 +57,10 @@ public class ReviewService {
         List<ReviewEntity> reviewEntityList = reviewRepository.findSectionByStoreId(id,pageNumber);
         return reviewEntityList;
     }
+
+    public List<ReviewEntity>findSectionByUserId(Long id, Integer pageNumber){
+        List<ReviewEntity> reviewEntityList = reviewRepository.findSectionByUserId(id,pageNumber);
+        return reviewEntityList;
+    }
+
 }

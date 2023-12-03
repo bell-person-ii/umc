@@ -22,8 +22,8 @@ public class ReviewController {
     private final ReviewService reviewService;
 
 
-    @GetMapping("allReviews")
-    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showStoreReview(@RequestParam("storeId")Long storeId){
+    @GetMapping("stores/allReviews")
+    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showStoreReviewByStoreId(@RequestParam("storeId")Long storeId){
         List<ReviewEntity> reviewEntityList = reviewService.findAllByStoreId(storeId);
         List<StoreReviewsResponseDto> storeReviewsResponseDtoList= reviewService.ReviewEntitiesToResponseDto(reviewEntityList);
         return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,storeReviewsResponseDtoList),HttpStatus.OK);
@@ -32,9 +32,16 @@ public class ReviewController {
 
 
 
-    @GetMapping("reviews")
-    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showSectionalStoreReview(@RequestParam("storeId")Long storeId,@RequestParam("page")Integer pageNumber){
+    @GetMapping("stores/reviews")
+    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showSectionalStoreReviewByStoreId(@RequestParam("storeId")Long storeId,@RequestParam("page")Integer pageNumber){
         List<ReviewEntity> reviewEntityList = reviewService.findSectionByStoreId(storeId,pageNumber);
+        List<StoreReviewsResponseDto> storeReviewsResponseDtoList= reviewService.ReviewEntitiesToResponseDto(reviewEntityList);
+        return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,storeReviewsResponseDtoList),HttpStatus.OK);
+    }
+
+    @GetMapping("users/reviews")
+    public ResponseEntity<ApiResponse<List<StoreReviewsResponseDto>>>showSectionalStoreReviewByUserId(@RequestParam("userId")Long userId,@RequestParam("page")Integer pageNumber){
+        List<ReviewEntity> reviewEntityList = reviewService.findSectionByUserId(userId,pageNumber);
         List<StoreReviewsResponseDto> storeReviewsResponseDtoList= reviewService.ReviewEntitiesToResponseDto(reviewEntityList);
         return new ResponseEntity<>(ApiResponse.of(SuccessStatus._OK,storeReviewsResponseDtoList),HttpStatus.OK);
     }

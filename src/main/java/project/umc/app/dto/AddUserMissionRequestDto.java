@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import project.umc.app.domain.MissionCompletion;
 import project.umc.app.domain.UserMissionEntity;
 import project.umc.app.vaildation.annotation.ExistMission;
+import project.umc.app.vaildation.annotation.ExistStore;
 import project.umc.app.vaildation.annotation.ExistUser;
 
 import javax.validation.constraints.NotNull;

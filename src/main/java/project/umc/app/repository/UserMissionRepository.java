@@ -25,4 +25,5 @@ public class UserMissionRepository {
                         .setParameter("id",id).getResultList();
         return userMissionEntityList;
     }
+
 }

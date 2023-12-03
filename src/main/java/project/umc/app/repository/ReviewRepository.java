@@ -43,4 +43,19 @@ public class ReviewRepository {
                         .getResultList();
         return reviewEntities;
     }
-}
+
+    public List<ReviewEntity> findSectionByUserId(Long id,Integer pageNumber) {
+
+        Integer pageSize = 10;
+
+        List<ReviewEntity> reviewEntities =
+                em.createQuery("select r from ReviewEntity r where r.userEntity.id =: id")
+                        .setParameter("id", id)
+                        .setFirstResult((pageNumber - 1) * pageSize)
+                        .setMaxResults(pageSize)
+                        .getResultList();
+        return reviewEntities;
+    }
+
+
+    }
