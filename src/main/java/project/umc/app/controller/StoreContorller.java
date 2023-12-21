@@ -1,6 +1,7 @@
 package project.umc.app.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class StoreContorller {
     private final OwnerService ownerService;
 
     @PostMapping("stores/registration")
+    @Operation(summary = "스토어 등록 API", description = "스토어의 이름, 주소, 오너의 아이디, 스토어 카테고리 ID를 입력 받아 저장함")
     public ResponseEntity<ApiResponse<AddStoreResponseDto>> AddStore(@RequestBody @Valid AddStoreRequestDto addStoreRequestDto){
 
         OwnerEntity findOwnerEntity= ownerService.findOwnerById(addStoreRequestDto.getOwnerId());

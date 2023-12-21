@@ -49,10 +49,10 @@ public class ReviewRepository {
         Integer pageSize = 10;
 
         List<ReviewEntity> reviewEntities =
-                em.createQuery("select r from ReviewEntity r join fetch UserEntity u where u.id =: id",ReviewEntity.class)
+                em.createQuery("select r from ReviewEntity r  where r.userEntity.id =: id",ReviewEntity.class)
                         .setParameter("id", id)
                         .setFirstResult((pageNumber - 1) * pageSize)
-                        .setMaxResults(pageSize)
+                        .setMaxResults((pageNumber * pageSize))
                         .getResultList();
         return reviewEntities;
     }

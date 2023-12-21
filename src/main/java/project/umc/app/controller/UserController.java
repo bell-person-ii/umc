@@ -1,6 +1,7 @@
 package project.umc.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public class UserController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("users/sign-up")
+    @Operation(summary = "유저 등록 API", description = "유저의 이름, 성별, 생년월일, 이메일 입력을 받아 저장함 ")
     public ResponseEntity<ApiResponse<UserJoinResponseDto>> UserSignUp(@RequestBody @Valid UserJoinRequestDto userJoinRequestDto){
 
         // 이미 존재하는 이메일이면 유저 추가 가입 거부

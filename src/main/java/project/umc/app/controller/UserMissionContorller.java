@@ -1,5 +1,6 @@
 package project.umc.app.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class UserMissionContorller {
     private final UserMissionService userMissionService;
 
     @PostMapping("missions/challenge")
+    @Operation(summary = "유저 미션 등록 API", description = "유저 ID와 미션 ID를 입력 받아 유저를 미션에 참여 처리함")
     public ResponseEntity<ApiResponse<AddUserMissionResponseDto>> registerUserMission(@RequestBody @Valid AddUserMissionRequestDto addUserMissionRequestDto){
         UserMissionEntity userMissionEntity = AddUserMissionRequestDto.toEntity(addUserMissionRequestDto);
         userMissionService.insertUserAndMissionEntityById(userMissionEntity,
@@ -32,6 +34,7 @@ public class UserMissionContorller {
     }
 
     @GetMapping("users/missions/in-progress")
+    @Operation(summary = "유저 미션 조회 API", description = "유저가 참여중인 미션중 상태가 미완료인 미션을 조회함")
     public ResponseEntity<ApiResponse<List<UserMissionResponseDto>>> showNotCompletedUserMissions(@RequestParam("userId")Long userId){
         List<UserMissionEntity> userMissionEntityList = userMissionService.findNotCompletedUserMissions(userId);
         List<UserMissionResponseDto> userMissionResponseDtoList= userMissionService.EntityListToDtoList(userMissionEntityList);
@@ -40,6 +43,7 @@ public class UserMissionContorller {
     }
 
     @PutMapping("users/missions/completetion")
+    @Operation(summary = "유저 미션 완료처리 API", description = "유저가 참여중인 미션을 완료 처리함")
     public ResponseEntity<ApiResponse<UserMissionResponseDto>> missionComplete(@RequestParam("userMissionId")Long userMissionId){
         UserMissionEntity userMissionEntity = userMissionService.changeCompletion(userMissionId);
         UserMissionResponseDto userMissionResponseDto = UserMissionResponseDto.createUserMissionResponseDto(userMissionEntity);

@@ -1,5 +1,6 @@
 package project.umc.app.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 public class OwnerController {
     private final OwnerService ownerService;
 
+    @Operation(summary = "유저 가입 API",description = "유저 이름, 성별, 생년월일, 주소, 이메일을 입력 받아 화원정보를 저장함")
     @PostMapping("owners/sign-up")
     public ResponseEntity<ApiResponse<OwnerJoinResponseDto>> OwnerSignUp(@RequestBody @Valid OwnerJoinRequestDto ownerJoinRequestDto){
         OwnerEntity ownerEntity = OwnerJoinRequestDto.toEntity(ownerJoinRequestDto);

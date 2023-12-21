@@ -1,5 +1,7 @@
 package project.umc.app.controller;
 
+import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ public class MissionController {
     private final StoreService storeService;
     private final MissionService missionService;
 
+    @Operation(summary = "미션 등록 API" , description = "스토어 아이디, 미션 내용, 보상 내용, 마감일을 입력 받아 미션을 등록함")
     @PostMapping("missions/registration")
     public ResponseEntity<ApiResponse<AddMissionResponseDto>> addmission(@RequestBody @Valid AddMissionRequestDto addMissionRequestDto){
         MissionEntity missionEntity = AddMissionRequestDto.toEntity(addMissionRequestDto);
@@ -42,9 +45,9 @@ public class MissionController {
         return new ResponseEntity<>(ApiResponse.of(SuccessStatus._ACCEPTED,addMissionResponseDto),HttpStatus.ACCEPTED);
     }
 
+    @Operation(summary = "미션 조회 API", description = "URI로 스토어ID를 받아 해당 스토어의 미션 리스트를 반환함 ")
     @GetMapping("stores/missions")
     public ResponseEntity<ApiResponse<List<MissionResponseDto>>> showAllStoreMissions(@RequestParam("storeId")Long storeId){
-
         List<MissionEntity> missionEntityList = missionService.findAllByStoreId(storeId);
         List<MissionResponseDto> missionResponseDtoList = missionService.missionEntityListToDtoList(missionEntityList);
 
